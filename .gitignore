@@ -1,0 +1,19 @@
+# secrets
+.env
+*.pem
+*.key
+
+# python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# ide / os
+.idea/
+.vscode/
+.DS_Store
+
+# docker volumes / local
+pgdata/
