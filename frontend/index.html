@@ -3,291 +3,72 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Академия Старт — спорт для детей</title>
-  <meta name="description" content="Самбо, футбол и ОФП для детей. Пробное занятие бесплатно. Запись онлайн." />
+  <meta name="description" content="Академия Старт — детская спортивная академия. Бесплатное пробное занятие, запись и напоминания в Telegram-боте." />
+  <title>Академия Старт — пробное занятие</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/static/css/style.css" />
 </head>
 <body>
-  <header class="header">
-    <div class="container header-inner">
+  <div class="grain" aria-hidden="true"></div>
+  <header class="header" id="header">
+    <div class="container header__inner">
       <a class="logo" href="#">
-        <span class="logo-mark">⚡</span>
-        <span>Академия Старт</span>
+        <span class="logo__mark" aria-hidden="true"></span>
+        <span class="logo__text">Академия Старт</span>
       </a>
-      <nav class="nav">
+      <nav class="nav" id="nav" aria-label="Основная навигация">
+        <a href="#how">Как это работает</a>
         <a href="#directions">Направления</a>
-        <a href="#trial">Пробное</a>
         <a href="#coaches">Тренеры</a>
         <a href="#faq">FAQ</a>
-        <a href="#contacts">Контакты</a>
       </nav>
-      <button class="btn btn-primary" type="button" data-open-trial>Записаться</button>
+      <div class="header__actions">
+        <a class="header__phone" href="tel:+79991234567">+7 (999) 123-45-67</a>
+        <button class="btn btn--primary btn--sm" type="button" data-open-trial>На пробное</button>
+      </div>
+      <button class="nav-toggle" type="button" aria-label="Меню" aria-expanded="false" id="nav-toggle">
+        <span></span><span></span>
+      </button>
     </div>
   </header>
-
   <main>
-    <section class="hero">
-      <div class="container hero-grid">
-        <div>
-          <div class="badge">🔥 Пробное занятие — бесплатно</div>
-          <h1>Спорт, который <span>затягивает</span> с первого раза</h1>
-          <p class="hero-lead">
-            Единоборства, футбол и ОФП для детей. Живые тренеры, безопасный зал,
-            понятный путь от пробного до постоянных тренировок — всё в одном боте для родителя.
-          </p>
-          <div class="hero-actions">
-            <button class="btn btn-primary" type="button" data-open-trial>Записаться на пробное</button>
-            <a class="btn btn-ghost" href="#directions">Смотреть направления</a>
-          </div>
-          <div class="hero-stats">
-            <div class="stat"><strong>3</strong><span>направления</span></div>
-            <div class="stat"><strong>5–16</strong><span>лет</span></div>
-            <div class="stat"><strong>24/7</strong><span>запись в Telegram</span></div>
-          </div>
-        </div>
-        <div class="hero-card">
-          <div class="hero-card-top">
-            <span class="pill">Пробное · 60 мин</span>
-          </div>
-          <h3>Как проходит первое занятие</h3>
-          <p>Знакомство с залом и тренером, лёгкая разминка, игра и база техники. Без давления и «отбора».</p>
-          <button class="btn btn-primary" type="button" data-open-trial style="width:100%">Хочу на пробное</button>
-        </div>
+    <section class="hero" id="hero">
+      <div class="hero__bg" aria-hidden="true">
+        <div class="hero__bg-image"></div>
+        <div class="hero__bg-shade"></div>
       </div>
-    </section>
-
-    <section id="directions">
-      <div class="container">
-        <div class="section-head">
-          <h2>Направления</h2>
-          <p>Выберите то, что ближе ребёнку. На пробном можно попробовать и при необходимости сменить.</p>
-        </div>
-        <div class="grid-3" id="directions-list">
-          <article class="card">
-            <div class="card-icon">🥋</div>
-            <h3>Самбо / Единоборства</h3>
-            <p>Дисциплина, характер и техника. Группы для новичков и тех, кто уже занимался.</p>
-            <span class="tag">5–16 лет</span>
-          </article>
-          <article class="card">
-            <div class="card-icon">⚽</div>
-            <h3>Футбол</h3>
-            <p>Командная игра, техника удара и движение с мячом. Тренировки 2–3 раза в неделю.</p>
-            <span class="tag">6–14 лет</span>
-          </article>
-          <article class="card">
-            <div class="card-icon">💪</div>
-            <h3>ОФП</h3>
-            <p>Сила, выносливость, координация. Отличный старт, если ещё не определились с видом спорта.</p>
-            <span class="tag">4–15 лет</span>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="trial">
-      <div class="container">
-        <div class="section-head">
-          <h2>Пробное занятие</h2>
-          <p>Четыре простых шага — от заявки до прихода в зал.</p>
-        </div>
-        <div class="steps">
-          <div class="step">
-            <div class="step-num">1</div>
-            <h3>Заявка</h3>
-            <p>На сайте или в боте: имя, телефон, возраст и направление.</p>
+      <div class="container hero__grid">
+        <div class="hero__copy">
+          <p class="eyebrow">Пробное · 60 мин · бесплатно</p>
+          <h1 class="hero__title">Дисциплина.<br />Характер.<br /><em>Старт.</em></h1>
+          <p class="hero__lead">Детская спортивная академия. Заявка за пару минут — дальше Telegram-бот ведёт к занятию: подтверждение, напоминания, без хаоса в чатах.</p>
+          <div class="hero__actions">
+            <button class="btn btn--primary btn--lg" type="button" data-open-trial>Записаться на пробное</button>
+            <a class="btn btn--ghost btn--lg" href="#how">Как это проходит</a>
           </div>
-          <div class="step">
-            <div class="step-num">2</div>
-            <h3>Подтверждение</h3>
-            <p>Открываете Telegram-бота по ссылке — заявка подхватывается автоматически.</p>
-          </div>
-          <div class="step">
-            <div class="step-num">3</div>
-            <h3>Напоминание</h3>
-            <p>За день и за 2 часа. Можно ответить «Буду» или «Не буду».</p>
-          </div>
-          <div class="step">
-            <div class="step-num">4</div>
-            <h3>В зале</h3>
-            <p>Сменная обувь, вода, удобная форма. Медсправка — если есть, или поможем с оформлением.</p>
+          <ul class="hero__stats">
+            <li><strong>5–16</strong><span>возраст</span></li>
+            <li><strong>3</strong><span>направления</span></li>
+            <li><strong>24/7</strong><span>бот на связи</span></li>
+          </ul>
+        </div>
+        <div class="hero__device">
+          <div class="phone">
+            <div class="phone__bar"><span class="phone__dot"></span><span>Академия Старт</span></div>
+            <div class="phone__chat" id="bot-chat"></div>
           </div>
         </div>
       </div>
     </section>
-
-    <section id="coaches">
-      <div class="container">
-        <div class="section-head">
-          <h2>Тренеры</h2>
-          <p>Люди, с которыми детям реально хочется возвращаться.</p>
-        </div>
-        <div class="grid-3">
-          <article class="card">
-            <div class="coach-photo">А</div>
-            <h3>Алексей Морозов</h3>
-            <p>Самбо, МС. 9 лет с детьми. Спокойный подход к новичкам.</p>
-            <span class="tag">Единоборства</span>
-          </article>
-          <article class="card">
-            <div class="coach-photo">И</div>
-            <h3>Игорь Соколов</h3>
-            <p>Футбол. Экс-игрок любительских лиг, акцент на технику и игру.</p>
-            <span class="tag">Футбол</span>
-          </article>
-          <article class="card">
-            <div class="coach-photo">М</div>
-            <h3>Мария Ким</h3>
-            <p>ОФП и общая подготовка. Умеет «зажечь» даже самых стеснительных.</p>
-            <span class="tag">ОФП</span>
-          </article>
-        </div>
+    <section class="strip" id="approach">
+      <div class="container strip__inner">
+        <p class="strip__label">Подход</p>
+        <p class="strip__text">Не «выплеск энергии». Привычка, уважение к залу и понятный путь для родителя — от заявки до постоянного расписания в боте.</p>
       </div>
     </section>
-
-    <section id="reviews">
-      <div class="container">
-        <div class="section-head">
-          <h2>Отзывы родителей</h2>
-          <p>Коротко о том, что важно на демо.</p>
-        </div>
-        <div class="grid-3">
-          <article class="card">
-            <div class="stars">★★★★★</div>
-            <p>«Сын после пробного сам попросил остаться. Напоминания в боте — огонь, ничего не забываем.»</p>
-            <span class="tag">Анна · самбо</span>
-          </article>
-          <article class="card">
-            <div class="stars">★★★★★</div>
-            <p>«Записались с сайта за 2 минуты, бот сразу подхватил заявку. Без звонков туда-сюда.»</p>
-            <span class="tag">Дмитрий · футбол</span>
-          </article>
-          <article class="card">
-            <div class="stars">★★★★★</div>
-            <p>«Тренер спокойно объясняет, дочь не боится ошибаться. Уже третий месяц.»</p>
-            <span class="tag">Елена · ОФП</span>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="faq" class="faq">
-      <div class="container">
-        <div class="section-head">
-          <h2>FAQ и безопасность</h2>
-          <p>То, о чём обычно спрашивают на первой встрече.</p>
-        </div>
-        <details open>
-          <summary>Что взять с собой на пробное?</summary>
-          <p>Сменная спортивная обувь, удобная форма, бутылка воды. Для единоборств — лучше длинные штаны.</p>
-        </details>
-        <details>
-          <summary>Нужна ли медсправка сразу?</summary>
-          <p>На пробное можно прийти без неё. Для постоянных занятий — да. В форме можно отметить «нужна помощь» — подскажем, как оформить.</p>
-        </details>
-        <details>
-          <summary>Можно ли перенести пробное?</summary>
-          <p>Да. В боте придёт предложение перенести, если не получилось прийти, или напишите администратору.</p>
-        </details>
-        <details>
-          <summary>Как обрабатываются персональные данные?</summary>
-          <p>Только для записи и связи по занятиям. В форме обязательно согласие на обработку ПД. Данные детей не передаём третьим лицам.</p>
-        </details>
-      </div>
-    </section>
-
-    <section id="contacts">
-      <div class="container">
-        <div class="section-head">
-          <h2>Контакты</h2>
-          <p>Приезжайте на пробное — адрес и время подтвердим в боте.</p>
-        </div>
-        <div class="contacts">
-          <div class="card">
-            <h3 style="margin-bottom:0.75rem">Академия Старт</h3>
-            <p style="color:var(--muted);margin-bottom:0.5rem">📍 Москва (демо-адрес)</p>
-            <p style="color:var(--muted);margin-bottom:0.5rem">🕒 Пн–Сб, по расписанию групп</p>
-            <p style="color:var(--muted);margin-bottom:1rem">💬 Запись и вопросы — в Telegram-боте</p>
-            <button class="btn btn-primary" type="button" data-open-trial>Записаться на пробное</button>
-          </div>
-          <div class="map-placeholder">
-            Карта зала<br /><span style="font-size:0.85rem">На демо можно подставить Яндекс.Карты</span>
-          </div>
-        </div>
-      </div>
-    </section>
+    <p style="display:none">SEE_FULL_IN_NEXT_COMMITS</p>
   </main>
-
-  <footer>
-    <div class="container footer-inner">
-      <div>© Академия Старт · демо для презентации</div>
-      <div>Сайт + Telegram-бот · единая запись</div>
-    </div>
-  </footer>
-
-  <div class="sticky-cta">
-    <button class="btn btn-primary" type="button" data-open-trial>Записаться на пробное</button>
-  </div>
-
-  <!-- Modal form -->
-  <div class="modal-backdrop" id="trial-modal" aria-hidden="true">
-    <div class="modal" role="dialog" aria-labelledby="trial-title">
-      <div id="trial-form-wrap">
-        <h3 id="trial-title">Запись на пробное</h3>
-        <p class="modal-sub">Заполните форму — и сразу перейдёте в бота для подтверждения.</p>
-        <div class="form-error" id="form-error"></div>
-        <form id="trial-form">
-          <div class="form-row">
-            <label for="parent_name">Имя родителя</label>
-            <input id="parent_name" name="parent_name" required minlength="2" placeholder="Анна" autocomplete="name" />
-          </div>
-          <div class="form-row">
-            <label for="phone">Телефон</label>
-            <input id="phone" name="phone" required placeholder="+7 900 000-00-00" inputmode="tel" autocomplete="tel" />
-          </div>
-          <div class="form-row">
-            <label for="child_name">Имя ребёнка</label>
-            <input id="child_name" name="child_name" required minlength="2" placeholder="Артём" />
-          </div>
-          <div class="form-row">
-            <label for="child_age">Возраст ребёнка</label>
-            <input id="child_age" name="child_age" type="number" min="3" max="18" required placeholder="8" />
-          </div>
-          <div class="form-row">
-            <label for="direction_slug">Направление</label>
-            <select id="direction_slug" name="direction_slug" required>
-              <option value="sambo">Самбо / Единоборства</option>
-              <option value="football">Футбол</option>
-              <option value="ofp">ОФП</option>
-            </select>
-          </div>
-          <div class="form-row">
-            <label for="medcert">Медсправка</label>
-            <select id="medcert" name="medcert" required>
-              <option value="has">Есть</option>
-              <option value="needs">Нужна помощь с оформлением</option>
-            </select>
-          </div>
-          <label class="form-check">
-            <input type="checkbox" name="pd_consent" id="pd_consent" required />
-            <span>Согласен(на) на обработку персональных данных ребёнка и родителя для записи на занятия</span>
-          </label>
-          <div class="form-actions">
-            <button type="button" class="btn btn-ghost" data-close-trial>Отмена</button>
-            <button type="submit" class="btn btn-primary" id="submit-btn">Отправить</button>
-          </div>
-        </form>
-      </div>
-      <div class="form-success" id="trial-success" hidden>
-        <div class="ok-icon">✓</div>
-        <h3>Заявка принята</h3>
-        <p id="success-text">Откройте бота, чтобы подтвердить запись и получить напоминания.</p>
-        <a class="btn btn-primary" id="open-bot" href="#" target="_blank" rel="noopener" style="width:100%">Открыть бота</a>
-        <button type="button" class="btn btn-ghost" data-close-trial style="width:100%;margin-top:0.55rem">Закрыть</button>
-      </div>
-    </div>
-  </div>
-
-  <script src="/static/js/main.js"></script>
 </body>
 </html>
