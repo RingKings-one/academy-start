@@ -9,8 +9,6 @@ from app.db.models.enrollment import Enrollment
 from app.db.models.attendance import Attendance
 from app.db.models.reminder import Reminder
 from app.db.models.payment import Payment
-from app.db.models.coach_availability import CoachAvailability
-from app.db.models.ticket import Ticket
 
 __all__ = [
     "User",
@@ -24,6 +22,4 @@ __all__ = [
     "Attendance",
     "Reminder",
     "Payment",
-    "CoachAvailability",
-    "Ticket",
 ]

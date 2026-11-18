@@ -1,31 +1,68 @@
-# Академия Старт
-
-Демо: сайт + Telegram-бот для детской спортивной школы.
+# Академия Старт — демо (сайт + Telegram-бот)
 
 ## Стек
-
-- FastAPI + Uvicorn
+- Python 3.12
+- FastAPI
 - aiogram 3
-- PostgreSQL + Alembic
-- Docker Compose (api, bot, worker, db)
+- PostgreSQL 16
+- SQLAlchemy 2 + Alembic
+- Docker Compose
 
-## Быстрый старт
+## Быстрый старт (локально)
 
+1. Скопируй `.env.example` → `.env` и укажи:
+   - `BOT_TOKEN`
+   - `ADMIN_TELEGRAM_IDS` (свой telegram_id)
+   - при необходимости `COACH_TELEGRAM_IDS`
+
+2. Подними базу:
 ```bash
-cp .env.example .env
-# заполните BOT_TOKEN, ADMIN_TELEGRAM_IDS, COACH_TELEGRAM_IDS
-
-docker compose up -d --build
-docker compose exec api alembic upgrade head
-docker compose exec api python scripts/seed_demo.py
+docker compose up -d db
 ```
 
-Сайт: http://localhost:8002/ (порт см. docker-compose)
+3. Установи зависимости (если без Docker для api/bot):
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
 
-## Роли
+4. Примени миграции (когда появятся):
+```bash
+alembic upgrade head
+```
 
-- **parent** — запись на пробное, расписание, оплаты (демо)
-- **coach** — явка, занятия
-- **admin** — заявки, слоты, тренеры, оплаты
+5. Запуск:
+```bash
+# API
+uvicorn app.main:app --reload --port 8000
 
-`.env` в репозиторий не коммитится.
+# Bot
+python -m app.bot.main
+
+# Worker
+python -m app.worker.main
+```
+
+Или всё через Docker:
+```bash
+docker compose up --build
+```
+
+## Порты
+- API: 8000
+- Сайт (позже): 3001
+- Postgres: 5432
+
+## Структура
+```
+app/
+  api/          # FastAPI роуты
+  bot/          # aiogram бот
+  core/         # конфиг
+  db/           # модели + миграции
+  services/     # бизнес-логика
+  worker/       # очередь reminders
+frontend/       # сайт
+scripts/        # seed, reset-demo
+```

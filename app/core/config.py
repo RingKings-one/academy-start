@@ -11,21 +11,24 @@ class Settings(BaseSettings):
         extra="ignore",
     )
 
+    # App
     app_env: str = "local"
     app_tz: str = "Europe/Moscow"
     secret_key: str = "change-me"
 
+    # Database
     database_url: str = "postgresql+asyncpg://academy:academy_secret@localhost:5432/academy_start"
 
+    # Telegram
     bot_token: str = ""
-    bot_username: str = ""
+    bot_username: str = ""  # без @, например AcademyStartBot
     bot_webhook_url: str | None = None
     admin_telegram_ids: str = ""
     coach_telegram_ids: str = ""
 
+    # Ports
     api_port: int = 8000
     site_port: int = 3001
-    cors_origins: str = "*"
 
     @property
     def admin_ids(self) -> List[int]:
@@ -38,13 +41,6 @@ class Settings(BaseSettings):
         if not self.coach_telegram_ids.strip():
             return []
         return [int(x.strip()) for x in self.coach_telegram_ids.split(",") if x.strip()]
-
-    @property
-    def cors_origin_list(self) -> list[str]:
-        raw = (self.cors_origins or "*").strip()
-        if raw == "*":
-            return ["*"]
-        return [x.strip() for x in raw.split(",") if x.strip()]
 
     @property
     def is_local(self) -> bool:

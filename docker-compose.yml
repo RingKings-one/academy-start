@@ -21,11 +21,13 @@ services:
     build: .
     container_name: academy_api
     restart: unless-stopped
-    command: uvicorn app.main:app --host 0.0.0.0 --port 8000
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
     env_file:
       - .env
     ports:
-      - "${API_HOST_PORT:-8002}:8000"
+      - "8000:8000"
+    volumes:
+      - .:/app
     depends_on:
       db:
         condition: service_healthy
@@ -37,6 +39,8 @@ services:
     command: python -m app.bot.main
     env_file:
       - .env
+    volumes:
+      - .:/app
     depends_on:
       db:
         condition: service_healthy
@@ -50,6 +54,8 @@ services:
     command: python -m app.worker.main
     env_file:
       - .env
+    volumes:
+      - .:/app
     depends_on:
       db:
         condition: service_healthy

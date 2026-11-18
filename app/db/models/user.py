@@ -13,7 +13,7 @@ class User(Base):
 
     id: Mapped[int] = mapped_column(BigInteger, primary_key=True, autoincrement=True)
     telegram_id: Mapped[int] = mapped_column(BigInteger, unique=True, nullable=False, index=True)
-    role: Mapped[str] = mapped_column(String(20), nullable=False, default="parent")
+    role: Mapped[str] = mapped_column(String(20), nullable=False, default="parent")  # parent / coach / admin
     first_name: Mapped[Optional[str]] = mapped_column(String(128), nullable=True)
     username: Mapped[Optional[str]] = mapped_column(String(128), nullable=True)
     phone: Mapped[Optional[str]] = mapped_column(String(20), nullable=True)
@@ -27,5 +27,6 @@ class User(Base):
         DateTime(timezone=True), server_default=func.now(), onupdate=func.now()
     )
 
+    # relationships
     children = relationship("Child", back_populates="parent", foreign_keys="Child.parent_user_id")
     coach_profile = relationship("CoachProfile", back_populates="user", uselist=False)

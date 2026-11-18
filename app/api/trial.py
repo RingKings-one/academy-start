@@ -3,11 +3,9 @@
 from __future__ import annotations
 
 import re
-import time
-from collections import defaultdict, deque
 from datetime import date
 
-from fastapi import APIRouter, Depends, HTTPException, Request
+from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel, Field, field_validator
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -18,23 +16,6 @@ from app.db.models import Direction
 from app.services.application_service import create_application
 
 router = APIRouter(prefix="/api", tags=["trial"])
-
-_RATE: dict[str, deque] = defaultdict(deque)
-_RATE_LIMIT = 3
-_RATE_WINDOW = 3600
-
-
-def _check_rate(ip: str) -> None:
-    now = time.time()
-    q = _RATE[ip]
-    while q and now - q[0] > _RATE_WINDOW:
-        q.popleft()
-    if len(q) >= _RATE_LIMIT:
-        raise HTTPException(
-            status_code=429,
-            detail="Слишком много заявок с вашего адреса. Попробуйте позже или напишите в Telegram.",
-        )
-    q.append(now)
 
 
 def normalize_phone(raw: str) -> str:
@@ -75,15 +56,8 @@ class TrialResponse(BaseModel):
 @router.post("/trial", response_model=TrialResponse)
 async def submit_trial(
     body: TrialRequest,
-    request: Request,
     session: AsyncSession = Depends(get_session),
 ):
-    ip = request.client.host if request.client else "unknown"
-    fwd = request.headers.get("x-forwarded-for")
-    if fwd:
-        ip = fwd.split(",")[0].strip()
-    _check_rate(ip)
-
     try:
         phone = normalize_phone(body.phone)
     except ValueError as e:
@@ -120,6 +94,7 @@ async def submit_trial(
         child_birth_date=birth,
         medcert=body.medcert,
     )
+    # commit сделает get_session
 
     token = app.deep_link_token or ""
     username = (settings.bot_username or "").lstrip("@")
